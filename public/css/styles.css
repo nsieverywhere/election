@@ -1,0 +1,29 @@
+html, body {
+  font-family: Arial, sans-serif;
+  background-color: #e8f6ef;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* background-color: #917FB3; */
+  /* background-color: #E5BEEC; */
+  /* background-color: #FDE2F3; */
+}
+
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: #2a2f4f;
+  color: white;
+  height: 5rem;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: .85rem;
+}
