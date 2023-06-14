@@ -2,6 +2,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Unit</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
     <div class="custom-container">
@@ -9,7 +11,36 @@
             <%- include('partials/navbar'); -%>
         </header>
         <main class="content">
-        </main>
+            <form id="myForm" class="lgaform">
+                <input type="text" name="lga_id">
+                <button type="submit" class="dropdown-item lgabutton">Submit</button>
+              </form>
+              <script>
+                const form = document.getElementById('myForm');
+              
+                form.addEventListener('submit', function(event) {
+                  event.preventDefault();
+              
+                  const formData = new FormData(form);
+              
+                  const jsonData = {};
+                  formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                  });
+              
+                  // Send the data using Axios
+                  axios.post('/newunit', jsonData)
+                    .then(response => {
+                      // Handle the response from the backend
+                      console.log(response.data);
+                    })
+                    .catch(error => {
+                      // Handle any errors that occurred during the request
+                      console.error(error);
+                    });
+                });
+              </script>
+          </main>
     </div>
 
 <%- include('partials/footer'); -%>

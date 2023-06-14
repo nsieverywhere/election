@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L.G.A</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="custom-container">
@@ -9,6 +10,95 @@
             <%- include('partials/navbar'); -%>
         </header>
         <main class="content">
+          
+            <div class="lgabox">
+                <h1>View total result based on LGA</h1>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select L.G.A
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="lgaDropdown">
+                        <% lga.forEach(function(item) { %>
+                            <li>
+                                <form class="lgaform">
+                                    <input type="hidden" name="lga_id" value="<%= item.lga_id %>">
+                                    <button type="submit" class="dropdown-item lgabutton" href="#"><%= item.lga_name %></button>
+                                </form>
+                            </li>
+                        <% }); %>
+                      </ul>
+                      <h3 id="selectedLgaHeading"></h3>
+                    <script>
+                        // const forms = document.getElementsByClassName('lgaform');
+                        const forms = document.querySelectorAll('.lgaform');
+                        Array.from(forms).forEach(function(form) {
+                            form.addEventListener('submit', function(event) {
+                            event.preventDefault();
+
+                            const formData = new FormData(form);
+                            const lgaId = formData.get('lga_id');
+
+                            // Send the data using Axios
+                            axios.post('/lga', formData)
+                                .then(response => {
+                                // Handle the response from the backend
+                                console.log(response.data);
+                                populateTable(response.data.rows);
+                                updateSelectedLgaHeading(response.data.lganame[0].lga_name, 34); 
+                                })
+                                .catch(error => {
+                                // Handle any errors that occurred during the request
+                                console.error(error);
+                                });
+                                        
+                        })
+                        })
+
+                        function updateSelectedLgaHeading(lgaName, number) {
+                            const selectedLgaHeading = document.getElementById('selectedLgaHeading');
+                            selectedLgaHeading.textContent = `${lgaName} has ${number} polling units`;
+                        }
+
+
+                        // Function to populate the table with data
+                        function populateTable(data) {
+                            const tableBody = document.getElementById('tableBody');
+
+                            tableBody.innerHTML = '';                       
+
+                            data.forEach(function(item) {
+                                // Create a new table row
+                                const row = document.createElement('tr');
+
+                                const cell1 = document.createElement('td');
+                                cell1.textContent = item.polling_unit_name; // Replace 'property1' with the actual property name
+                                row.appendChild(cell1);
+
+                                const cell2 = document.createElement('td');
+                                cell2.textContent = item.polling_unit_description; // Replace 'property2' with the actual property name
+                                row.appendChild(cell2);
+
+                                // Add the row to the table body
+                                tableBody.appendChild(row);
+                            });
+                        }
+                    </script>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">polling_unit_name</th>
+                            <th scope="col">polling_unit_description</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     </div>
 

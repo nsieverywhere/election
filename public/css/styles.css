@@ -30,7 +30,7 @@ footer {
 
 h1 {
   text-align: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 form {
@@ -50,7 +50,7 @@ input[type="text"] {
   border: 1px solid #ccc;
 }
 
-button[type="submit"] {
+.homebtn {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -61,13 +61,13 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+.homebtn:hover {
   background-color: #45a049;
 }
 
 .inputbox {
   background-color: #E5BEEC;
-  height: 20rem;
+  height: 25rem;
   width: 40rem;
   margin: 5rem auto;
   padding: 3rem;
@@ -77,4 +77,25 @@ button[type="submit"]:hover {
 
 .pollingunit{
   padding: 3rem;
+}
+
+.lgabox{
+  margin: auto;
+  padding: 3rem;
+  align-items: center;
+  text-align: center;
+}
+
+.lgaform {
+  margin: 0;
+  padding: 0;
+}
+
+.lgabutton{
+  background-color: none;
+
+}
+
+#selectedLgaHeading{
+  margin: 2rem;
 }
