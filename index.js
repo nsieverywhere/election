@@ -72,20 +72,86 @@ app.post("/lga", upload.none(), async (req, res) => {
     if (err) {
       res.status(500).send("An error occurred");
     } else {
-
-      db.all(`SELECT lga_name FROM lga WHERE lga_id = ?`, lgaId, (err, lgarows) => {
-        console.log(lgarows)
-        res.json({rows: rows, lganame: lgarows, rowCount: rows.length });
-
-      });
-
+      db.all(
+        `SELECT lga_name FROM lga WHERE lga_id = ?`,
+        lgaId,
+        (err, lgarows) => {
+          console.log(lgarows);
+          res.json({ rows: rows, lganame: lgarows, rowCount: rows.length });
+        }
+      );
     }
   });
 });
-
 app.post("/newunit", async (req, res) => {
-  const { lga_id } = req.body;
-  console.log(lga_id);
+  const {
+    polling_unit_id,
+    ward_id,
+    lga_id,
+    polling_unit_number,
+    polling_unit_name,
+    polling_unit_description,
+    lat,
+    long,
+    entered_by_user,
+    date_entered,
+    user_ip_address
+  } = req.body;
+
+  const insertQuery = `
+    INSERT INTO polling_unit (
+      polling_unit_id,
+      ward_id,
+      lga_id,
+      polling_unit_number,
+      polling_unit_name,
+      polling_unit_description,
+      lat,
+      long,
+      entered_by_user,
+      date_entered,
+      user_ip_address
+    ) VALUES (
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?
+    )
+  `;
+
+  // Execute the insert query using your database library of choice
+  // For example, if you're using SQLite3 with node-sqlite3 library:
+  db.run(
+    insertQuery,
+    [
+      polling_unit_id,
+      ward_id,
+      lga_id,
+      polling_unit_number,
+      polling_unit_name,
+      polling_unit_description,
+      lat,
+      long,
+      entered_by_user,
+      date_entered,
+      user_ip_address
+    ],
+    function (err) {
+      if (err) {
+        res.status(500).send("An error occurred while inserting the data");
+      } else {
+        // res.status(200).send("Data inserted successfully");
+        res.render("newunit")
+      }
+    }
+  );
 });
 
 app.get("*", (req, res) => {

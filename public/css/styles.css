@@ -99,3 +99,13 @@ input[type="text"] {
 #selectedLgaHeading{
   margin: 2rem;
 }
+
+#pollingUnitForm{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pollingunitheading{
+  text-align: center;
+  margin: 2rem;
+}

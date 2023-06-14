@@ -52,7 +52,8 @@
                                         
                         })
                         })
-
+                        
+                        // update heading text
                         function updateSelectedLgaHeading(lgaName, rowCount) {
                             const selectedLgaHeading = document.getElementById('selectedLgaHeading');
                             selectedLgaHeading.textContent = `${lgaName} has ${rowCount} polling units`;
@@ -86,7 +87,6 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">polling_unit_name</th>
                             <th scope="col">polling_unit_description</th>
                         </tr>
