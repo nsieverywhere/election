@@ -10,9 +10,22 @@
         <header>
             <%- include('partials/navbar'); -%>
         </header>
+        <script>
+            // Function to hide the message after a certain duration
+            function hideMessage() {
+              var messageElement = document.getElementById('message');
+              messageElement.style.display = 'none';
+            }
+        
+            // Set a timeout to hide the message after 3 seconds (3000 milliseconds)
+            setTimeout(hideMessage, 2000);
+          </script>
        
         <main class="content">
             <h2 class="pollingunitheading">Enter a new polling Unit data</h2>
+            <% if (message) { %>
+                <p id="message" class="message"><%= message %></p>
+              <% } %>
             <form id="pollingUnitForm" action="/newunit" method="POST">
                 <div class="form-group">
                   <label for="pollingUnitId">Polling Unit ID</label>

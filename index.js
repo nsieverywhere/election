@@ -42,7 +42,7 @@ app.get("/lga", async (req, res) => {
 });
 
 app.get("/newunit", async (req, res) => {
-  res.render("newunit");
+  res.render("newunit", { message: ""});
 });
 
 // post request
@@ -147,8 +147,10 @@ app.post("/newunit", async (req, res) => {
       if (err) {
         res.status(500).send("An error occurred while inserting the data");
       } else {
+        const message = "Data inserted successfully";
+        res.render("newunit", { message });
         // res.status(200).send("Data inserted successfully");
-        res.render("newunit")
+
       }
     }
   );
