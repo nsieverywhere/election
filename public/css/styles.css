@@ -27,3 +27,54 @@ footer {
   padding-top: 2rem;
   font-size: .85rem;
 }
+
+h1 {
+  text-align: center;
+  margin: 2rem;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.inputbox {
+  background-color: #E5BEEC;
+  height: 20rem;
+  width: 40rem;
+  margin: 5rem auto;
+  padding: 3rem;
+
+
+}
+
+.pollingunit{
+  padding: 3rem;
+}

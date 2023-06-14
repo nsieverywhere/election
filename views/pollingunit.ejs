@@ -1,0 +1,54 @@
+<%- include('partials/header'); -%>
+    <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/styles.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Election App</title>
+</head>
+
+<body>
+    <div class="custom-container">
+        <header>
+            <%- include('partials/navbar'); -%>
+        </header>
+        <main class="content">
+            <!DOCTYPE html>
+<html>
+    <head>
+        <title>The Polling Units</title>
+    </head>
+    <body>
+        <div class="pollingunit">
+        <h1>The Polling Units you requested</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Result</th>
+                <th scope="col">Party</th>
+                <th scope="col">Party Score</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% units.forEach(function(unit, index) { %>
+                    <tr>
+                      <th scope="row"><%= index + 1 %></th>
+                      <td><%= unit.result_id %></td>
+                      <td><%= unit.party_abbreviation %></td>
+                      <td><%= unit.party_score %></td>
+                      <!-- Add more cells in the row as needed -->
+                    </tr>
+                  <% }) %>
+             
+            </tbody>
+          </table>
+
+    <button class="btn btn-primary" onclick="window.location.href='/'">Go Back</button>
+</div>
+    </body>
+    </html>
+    </main>
+    </div>
+
+<%- include('partials/footer'); -%>

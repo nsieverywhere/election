@@ -1,9 +1,13 @@
 const express = require("express");
 const fs = require('fs');
+const bodyparser = require("body-parser");
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
+
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(bodyparser.urlencoded({ extended: true })); 
 
 const db = new sqlite3.Database('DB/data.sqlite');
 
@@ -14,12 +18,10 @@ db.all('SELECT * FROM agentname', (err, rows) => {
     } else {
       // Process the query result
       rows.forEach((row) => {
-        console.log(row);
+        // console.log(row);
       });
     }
   
-    // Close the database connection
-    db.close();
   });
 
 
@@ -38,6 +40,18 @@ app.get("/lga", async (req, res) => {
 app.get("/newunit", async (req, res) => {
     res.render("newunit");
   });
+
+// post request
+
+app.post("/pollingunit", async (req, res) => {
+  const { pollingUnitId } = req.body;
+
+db.all(`SELECT * FROM announced_pu_results WHERE polling_unit_uniqueid = ?`, pollingUnitId, (err, rows) => {
+  console.log(rows)
+  res.render("pollingunit", {units: rows})
+    })
+})
+
 
 
 app.get("*", (req, res) => {
