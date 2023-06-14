@@ -44,19 +44,18 @@
                                 // Handle the response from the backend
                                 console.log(response.data);
                                 populateTable(response.data.rows);
-                                updateSelectedLgaHeading(response.data.lganame[0].lga_name, 34); 
+                                updateSelectedLgaHeading(response.data.lganame[0].lga_name, response.data.rowCount); 
                                 })
                                 .catch(error => {
-                                // Handle any errors that occurred during the request
                                 console.error(error);
                                 });
                                         
                         })
                         })
 
-                        function updateSelectedLgaHeading(lgaName, number) {
+                        function updateSelectedLgaHeading(lgaName, rowCount) {
                             const selectedLgaHeading = document.getElementById('selectedLgaHeading');
-                            selectedLgaHeading.textContent = `${lgaName} has ${number} polling units`;
+                            selectedLgaHeading.textContent = `${lgaName} has ${rowCount} polling units`;
                         }
 
 

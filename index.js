@@ -75,7 +75,7 @@ app.post("/lga", upload.none(), async (req, res) => {
 
       db.all(`SELECT lga_name FROM lga WHERE lga_id = ?`, lgaId, (err, lgarows) => {
         console.log(lgarows)
-        res.json({rows: rows, lganame: lgarows});
+        res.json({rows: rows, lganame: lgarows, rowCount: rows.length });
 
       });
 
